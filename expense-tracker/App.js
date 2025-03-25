@@ -15,7 +15,7 @@ const BottomTabs = createBottomTabNavigator();
 const BottomTabNavigation = () => {
   return (
     <BottomTabs.Navigator
-      screenOptions={{
+      screenOptions={({ navigation }) => ({
         headerStyle: {
           backgroundColor: GlobalStyles.colors.primary500,
         },
@@ -29,10 +29,10 @@ const BottomTabNavigation = () => {
             name="add"
             color={tintColor}
             size={24}
-            onPress={() => {}}
+            onPress={() => navigation.navigate("Manage")}
           />
         ),
-      }}
+      })}
     >
       <BottomTabs.Screen
         name="Recent"

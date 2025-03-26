@@ -14,9 +14,15 @@ const ManageExpense = ({ route, navigation }) => {
     });
   }, [navigation, isInEditMode]);
 
-  const deleteExpense = () => {};
-  const cancelHandler = () => {};
-  const confirmHandler = () => {};
+  const deleteExpense = () => {
+    navigation.goBack();
+  };
+  const cancelHandler = () => {
+    navigation.goBack();
+  };
+  const confirmHandler = () => {
+    navigation.goBack();
+  };
   return (
     <View style={styles.container}>
       <View style={styles.buttonContainer}>

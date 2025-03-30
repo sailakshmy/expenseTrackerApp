@@ -2,9 +2,9 @@ import { createContext, useReducer } from "react";
 
 export const ExpensesContext = createContext({
   expenses: [],
-  addExpense: ({ description, amount, date }) => {},
+  addExpense: ({ title, amount, date }) => {},
   deleteExpense: (id) => {},
-  updateExpense: (id, { description, amount, date }) => {},
+  updateExpense: (id, { title, amount, date }) => {},
 });
 
 function expensesReducer(state, action) {
@@ -22,7 +22,7 @@ function expensesReducer(state, action) {
       updatedExpenseList[updateExpenseIndex] = updatedExpense;
       return updatedExpenseList;
     case "DELETE":
-      return state.filter((expense) => expense.id !== action.payload.id);
+      return state.filter((expense) => expense.id !== action.payload);
     default:
       return state;
   }

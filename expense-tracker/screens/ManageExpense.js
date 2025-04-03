@@ -82,6 +82,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
+    marginTop: 120,
   },
   button: {
     minWidth: 120,

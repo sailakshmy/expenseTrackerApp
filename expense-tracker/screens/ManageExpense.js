@@ -23,19 +23,11 @@ const ManageExpense = ({ route, navigation }) => {
   const cancelHandler = () => {
     navigation.goBack();
   };
-  const confirmHandler = () => {
+  const confirmHandler = (expenseData) => {
     if (isInEditMode) {
-      expensesContext?.updateExpense(editedExpenseId, {
-        title: "Updates Desc!!!!",
-        amount: 29.99,
-        date: new Date("2025-03-30"),
-      });
+      expensesContext?.updateExpense(editedExpenseId, expenseData);
     } else {
-      expensesContext?.addExpense({
-        title: "Desc",
-        amount: 19.99,
-        date: new Date("2025-03-28"),
-      });
+      expensesContext?.addExpense(expenseData);
     }
     navigation.goBack();
   };

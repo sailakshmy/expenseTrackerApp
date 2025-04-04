@@ -18,7 +18,12 @@ const ExpenseForm = ({ onCancel, onSubmit, submitButtonLabel }) => {
   };
 
   const submitHandler = () => {
-    onSubmit();
+    const expenseData = {
+      amount: +inputValues.amount,
+      date: new Date(inputValues.date),
+      title: inputValues.title,
+    };
+    onSubmit(expenseData);
   };
   return (
     <View style={styles.form}>

@@ -1,13 +1,19 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
+import { getFormattedDate } from "../../utils/date";
 import Button from "../UI/Button";
 import Input from "./Input";
 
-const ExpenseForm = ({ onCancel, onSubmit, submitButtonLabel }) => {
+const ExpenseForm = ({
+  onCancel,
+  onSubmit,
+  submitButtonLabel,
+  defaultValues,
+}) => {
   const [inputValues, setInputValues] = useState({
-    amount: "",
-    date: "",
-    title: "",
+    amount: defaultValues?.amount.toString() ?? "",
+    date: getFormattedDate(defaultValues?.date) ?? "",
+    title: defaultValues?.title ?? "",
   });
 
   const changeInput = (inputIdentifier, enteredValue) => {

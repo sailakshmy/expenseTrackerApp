@@ -5,6 +5,7 @@ export const ExpensesContext = createContext({
   addExpense: ({ title, amount, date }) => {},
   deleteExpense: (id) => {},
   updateExpense: (id, { title, amount, date }) => {},
+  setExpenses: (expenses) => {},
 });
 
 function expensesReducer(state, action) {
@@ -23,46 +24,16 @@ function expensesReducer(state, action) {
       return updatedExpenseList;
     case "DELETE":
       return state.filter((expense) => expense.id !== action.payload);
+
+    case "SET":
+      return action.payload;
     default:
       return state;
   }
 }
 
-const DUMMY_EXPENSES = [
-  {
-    id: "e1",
-    title: "A pair of shoes",
-    amount: 59.99,
-    date: new Date("2021-12-19"),
-  },
-  {
-    id: "e2",
-    title: "A pair of troussers",
-    amount: 89.99,
-    date: new Date("2022-01-19"),
-  },
-  {
-    id: "e3",
-    title: "Some bananas",
-    amount: 5.99,
-    date: new Date("2021-12-01"),
-  },
-  {
-    id: "e4",
-    title: "A book",
-    amount: 14.99,
-    date: new Date("2022-02-19"),
-  },
-  {
-    id: "e6",
-    title: "A book",
-    amount: 18.59,
-    date: new Date("2025-03-28"),
-  },
-];
-
 function ExpensesContextProvider({ children }) {
-  const [expensesState, dispatch] = useReducer(expensesReducer, DUMMY_EXPENSES);
+  const [expensesState, dispatch] = useReducer(expensesReducer, []);
   const addExpense = (expenseData) => {
     dispatch({ type: "ADD", payload: expenseData });
   };
@@ -75,11 +46,16 @@ function ExpensesContextProvider({ children }) {
     dispatch({ type: "UPDATE", payload: { id, data: expenseData } });
   };
 
+  const setExpenses = (expenses) => {
+    dispatch({ type: "SET", payload: expenses });
+  };
+
   const value = {
     expenses: expensesState,
     addExpense: addExpense,
     deleteExpense: deleteExpense,
     updateExpense: updateExpense,
+    setExpenses: setExpenses,
   };
   return (
     <ExpensesContext.Provider value={value}>

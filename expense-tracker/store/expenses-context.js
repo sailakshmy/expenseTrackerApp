@@ -26,7 +26,8 @@ function expensesReducer(state, action) {
       return state.filter((expense) => expense.id !== action.payload);
 
     case "SET":
-      return action.payload;
+      const inverted = action.payload.reverse();
+      return inverted;
     default:
       return state;
   }
